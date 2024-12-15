@@ -106,3 +106,74 @@ god = int(input("Введите кол-во лет: "))
 stavka = 0.03
 itog = summa * (1 + stavka) ** god
 print (f"через {god} лет, сумма вклада будет {itog:.2f} евро") #2.f выводим 2 знака после запятой
+
+print("\n--- Praktiline too matemaatika ---\n")
+
+import random
+
+while True:
+    print("\nтест по математике!")
+    print("Выберите сложность:")
+    print("1 - Tase 1 (числа от 1 до 10, +, -)")
+    print("2 - Tase 2 (числа от 1 до 20, +, -, *)")
+    print("3 - Tase 3 (числа от 1 до 50, +, -, *, /, **)")
+    print("0 - Выйти из программы")
+
+    tase = int(input("Введите номер сложности (1, 2, 3 или 0 для выхода): "))
+    if tase == 0:
+        print("Спасибо за участие! До свидания!")
+        break
+
+    primery = int(input("Сколько примеров вы хотите решить? "))
+
+    pravilnye_otvety = 0
+
+    for i in range(primery):
+        if tase == 1:
+            a = random.randint(1, 10)
+            b = random.randint(1, 10)
+            zadacha = random.choice(['+', '-'])
+        elif tase == 2:
+            a = random.randint(1, 20)
+            b = random.randint(1, 20)
+            zadacha = random.choice(['+', '-', '*'])
+        elif tase == 3:
+            a = random.randint(1, 50)
+            b = random.randint(1, 50)
+            zadacha = random.choice(['+', '-', '*', '/', '**'])
+        if zadacha == '/':
+            b = random.randint(1, 10)
+            vopros = f"{a} // {b}"
+            pravilny_otvet = a // b
+        elif zadacha == '**':
+            b = random.randint(1, 3)
+            vopros = f"{a} ** {b}"
+            pravilny_otvet = a ** b
+        else:
+            vopros = f"{a} {zadacha} {b}"
+            pravilny_otvet = eval(vopros)
+
+        print(f"Пример {i + 1}: {vopros}")
+        otvet = float(input("Ваш ответ: "))
+
+        if otvet == pravilny_otvet:
+            print("Правильно!")
+            pravilnye_otvety += 1
+        else:
+            print(f"Неправильно! Правильный ответ: {pravilny_otvet}")
+
+    
+    cifra = (pravilnye_otvety / primery) * 100 #подсчитываем результат
+    print(f"\nВаш результат: {pravilnye_otvety} из {primery} ({cifra:.2f}%)")
+
+    if cifra < 60:
+        ocenka = 2
+    elif 60 <= cifra < 75:
+        ocenka = 3
+    elif 75 <= cifra < 90:
+        ocenka = 4
+    else:
+        ocenka = 5
+
+    print(f"Ваша оценка: Hinne {ocenka}")
+
